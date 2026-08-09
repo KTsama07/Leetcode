@@ -5,14 +5,24 @@ public:
         for(int i=0; i<nums.size();i++){
             hash[nums[i]] +=1;
         }
-        sort(hash,hash+101);
-        int t = 0;
-        for(int i=0; i<101;i++){
-            if(hash[i]==hash[100]){
-                t = t + hash[i];
+        // sort(hash,hash+101);
+        // int t = 0;
+        // for(int i=0; i<101;i++){
+        //     if(hash[i]==hash[100]){
+        //         t = t + hash[i];
+        //     }
+        // }
+        int max = 0;
+        int total = 0;
+        for(int i = 0 ; i < 101; i++){
+            if(hash[i]>max){
+                max = hash[i];
+                total = max;
+            } else if(hash[i]==max){
+                total += hash[i];
             }
         }
-        return t;
+        return total;
     }
 };
 
