@@ -2,20 +2,22 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         int n = nums.size();
-        // brute force TC:O(2N); SC: O(x);
-        vector<int> temp;
-        for(int i = 0; i < n; i++){
+        // optimal
+        int j;
+        for(j = 0 ; j<n ; j++){
+            if( nums[j] == 0 ) break;
+        }
+        int i = j+1;
+        for(i; i<n; i++){
             if(nums[i] != 0){
-                temp.push_back(nums[i]);
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j]= temp;
+                j++;
             }
+
         }
-        int nz = temp.size();
-        for(int i = 0 ; i<nz;i++){
-            nums[i] = temp[i];
-        }
-        for(int i = nz ; i<n;i++){
-            nums[i] = 0;
-        }
+        
     }
 };
 
