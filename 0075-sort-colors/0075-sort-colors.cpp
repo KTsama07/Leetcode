@@ -1,19 +1,23 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        int cout0=0, cout1=0, cout2=0;
+        //dutch national flag algo
         int n = nums.size();
-        for(int i = 0 ; i < n ; i++){
-            if(nums[i] == 0) cout0++;
-            if(nums[i] == 1) cout1++;
-            if(nums[i] == 2) cout2++;
-        }
-        for(int i = 0 ; i < n ; i++){
-            if(i < cout0) nums[i] = 0;
-            if(i>=cout0 && i< (cout0+cout1)) nums[i]=1;
-            if( i >=(cout0+cout1) && i < (cout0+cout1+cout2)){ 
-                nums[i] = 2;
+        int low = 0, mid = 0 , high = n-1;
+        while(mid <= high){
+            if(nums[mid] == 0){
+                swap(nums[low], nums[mid]);
+                low++;
+                mid++;
             }
+            else if(nums[mid] == 1){
+                mid++;
+            }
+            else {
+                swap(nums[high] , nums[mid]);
+                high--;
+            }
+            
         }
     }
 };
