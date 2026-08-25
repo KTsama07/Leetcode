@@ -6,16 +6,16 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        ptset = set()
-        temp = head 
-        while temp:
-            if temp in ptset:
+        """flloyd cycle detection"""
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
                 return True
-            ptset.add(temp)
-            temp = temp.next
         return False
-        
-
+       
         
 
 # Synced seamlessly with LeetHub Pro
