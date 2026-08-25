@@ -6,15 +6,13 @@
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        ptr_dict = {}
+        ptrset = set()
         temp = head
-        index = 0
         while temp:
-            if temp in ptr_dict:
+            if temp in ptrset:
                 return temp
-            ptr_dict[temp] = index
+            ptrset.add(temp)
             temp = temp.next
-            index = +1
         return None
 
 # Synced seamlessly with LeetHub Pro
