@@ -10,10 +10,10 @@ class Solution:
         while curr :
             ls.append(curr.val)
             curr = curr.next
-        for i in range(len(ls)//2):
-            if ls[i] != ls[ len(ls) - 1 - i]:
-                return False
-        return True
+        if ls[:] == ls[::-1]:
+            return True
+        else:
+            return False
 
 
 # Synced seamlessly with LeetHub Pro
