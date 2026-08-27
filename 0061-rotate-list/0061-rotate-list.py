@@ -15,6 +15,8 @@ class Solution:
             curr = curr.next
             cnt += 1
         k = k%cnt
+        if k==0:
+            return head
         while k != 0:
             curr.next = head
             head = curr
