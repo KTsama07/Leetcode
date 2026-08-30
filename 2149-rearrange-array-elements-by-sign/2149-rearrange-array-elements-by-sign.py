@@ -1,16 +1,14 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        pos = []
-        neg = []
-        ans = []
-        for num in nums:
-            if num>0:
-                pos.append(num)
+        i , j = 0,1
+        ans = [0]*len(nums)
+        for k in nums:
+            if k>0:
+                ans[i] = k
+                i += 2
             else:
-                neg.append(num)
-        for p, n in zip(pos, neg):
-            ans.append(p)
-            ans.append(n)
+                ans[j]=k
+                j+= 2
         return ans
 
 # Synced seamlessly with LeetHub Pro
