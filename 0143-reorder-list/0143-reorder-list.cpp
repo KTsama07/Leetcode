@@ -30,17 +30,15 @@ public:
             prev = curr;
             curr = front;
         }
-        ListNode* curr2 = prev;
-        ListNode* prev2 = nullptr;
-        ListNode* curr1 = head;
-        ListNode* prev1 = nullptr;
-        while(curr1 != nullptr && curr2 != nullptr){
-            prev1 = curr1;
-            curr1 = curr1->next;
-            prev2 = curr2;
-            curr2 = curr2->next;
-            prev1->next = prev2;
-            prev2->next = curr1;
+        ListNode* p1 = head;
+        ListNode* p2 = prev;
+        while(p2 != nullptr){
+            ListNode* next1 = p1->next;
+            ListNode* next2 = p2->next;
+            p1->next = p2;
+            p2->next = next1;
+            p1 = next1;
+            p2 = next2;
         }
         return;
     }
