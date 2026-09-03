@@ -11,22 +11,37 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if(head == nullptr){
+        if(head == nullptr || head->next == nullptr){
             return;
         }
-        ListNode* curr = head;
-        vector<ListNode*> na;
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while ( fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode* mid = slow->next;
+        slow->next = nullptr;
+        ListNode* prev = nullptr;
+        ListNode* curr = mid;
         while(curr != nullptr){
-            na.push_back(curr);
-            curr = curr->next;
+            ListNode* front = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = front;
         }
-        int n = na.size();
-        int i = 0;
-        for(; i < n/2 ; i++){
-            na[i]->next = na[n-1-i];
-            na[n-1-i]->next = na[i+1];
+        ListNode* curr2 = prev;
+        ListNode* prev2 = nullptr;
+        ListNode* curr1 = head;
+        ListNode* prev1 = nullptr;
+        while(curr1 != nullptr && curr2 != nullptr){
+            prev1 = curr1;
+            curr1 = curr1->next;
+            prev2 = curr2;
+            curr2 = curr2->next;
+            prev1->next = prev2;
+            prev2->next = curr1;
         }
-        na[i]->next = nullptr;
         return;
     }
 };
