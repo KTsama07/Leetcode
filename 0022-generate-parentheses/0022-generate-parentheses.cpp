@@ -6,14 +6,14 @@ public:
             return;
         }
         if(open > 0){
-            string op1 = op;
-            op1.push_back('(');
-            solve(open-1, close,op1,ans);
+            op += '(';
+            solve(open-1, close,op,ans);
+            op.pop_back();
         }
         if(close > open){
-            string op2 = op;
-            op2.push_back(')');
-            solve(open, close-1,op2,ans);
+            op += ')';
+            solve(open, close-1,op,ans);
+            op.pop_back();
         }
         return;
     }
