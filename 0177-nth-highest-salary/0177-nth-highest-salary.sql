@@ -1,11 +1,14 @@
 CREATE OR REPLACE FUNCTION NthHighestSalary(N INT) RETURNS TABLE (Salary INT) AS $$
 BEGIN
+    if N <= 0 then
+        return query select NULL::INT;
+        return;
+        end if;
   RETURN QUERY (
     -- Write your PostgreSQL query statement below.
     SELECT DISTINCT e.salary FROM Employee AS e
-    WHERE N > 0
     ORDER BY salary DESC 
-    LIMIT 1 OFFSET GREATEST(N-1,0)
+    LIMIT 1 OFFSET N-1
       
   );
 END;
