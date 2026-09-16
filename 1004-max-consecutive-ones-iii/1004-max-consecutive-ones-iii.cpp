@@ -7,14 +7,11 @@ public:
         int zeros = 0;
         for(int r = 0 ; r < n ; r++){
             if(nums[r]==0) zeros++;
-            if(zeros <= k){
-                max_len = max(max_len , r-l+1);
-            }
-            else {
-                while(nums[l]!=0) l++;
-                zeros--;
+            while(zeros>k){
+                if(nums[l]==0) zeros--;
                 l++;
             }
+            max_len = max(max_len , r-l+1);
         }
         return max_len;
     }
