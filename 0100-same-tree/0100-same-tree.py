@@ -5,21 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def preorder(self, t: TreeNode | None, ans: list[int]) -> list[int]:
-        if t==None: return
-        ans.append(t.val)
-        if t.left: self.preorder(t.left,ans)
-        else: ans.append(None)
-        if t.right: self.preorder(t.right,ans)
-        else: ans.append(None)
-        return
-
     def isSameTree(self, p: TreeNode | None, q: TreeNode | None) -> bool:
-        #preorder traversal
-        plist,qlist = [],[]
-        self.preorder(p,plist)
-        self.preorder(q,qlist)
-        return (plist==qlist)
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+
+
+        
 
 # Synced seamlessly with LeetHub Pro
 # Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
