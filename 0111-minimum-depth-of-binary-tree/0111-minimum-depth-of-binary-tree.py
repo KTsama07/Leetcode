@@ -7,12 +7,25 @@
 class Solution:
     def minDepth(self, root: TreeNode | None) -> int:
         if not root: return 0
-        if not root.left and not root.right: 
-            return 1
-        lh = self.minDepth(root.left)
-        rh = self.minDepth(root.right)
-        if lh == 0 or rh == 0 : return 1+max(lh,rh)
-        else: return 1+min(lh,rh)
+        q = deque()
+        q.append(root)
+        minH = 0
+        while q:
+            minH += 1
+            for _ in range(len(q)):
+                node = q.popleft()
+                if not node.left and not node.right: return minH
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
+
+
+        # if not root: return 0
+        # if not root.left and not root.right: 
+        #     return 1
+        # lh = self.minDepth(root.left)
+        # rh = self.minDepth(root.right)
+        # if lh == 0 or rh == 0 : return 1+max(lh,rh)
+        # else: return 1+min(lh,rh)
 
 # Synced seamlessly with LeetHub Pro
 # Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
